@@ -21,6 +21,7 @@ import GlobalStyles from './styles/GlobalStyles';
 // react query & tools
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ToastBar, Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,23 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
       <RouterProvider router={router} />
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: { duration: 5000 },
+          style: {
+            fontSize: '16px',
+            maxWidth: '500px',
+            padding: '16px 24px',
+            background: 'var(---color-grey-0)',
+            color: 'var(--color-grey-700)',
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }
