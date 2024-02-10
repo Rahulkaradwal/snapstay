@@ -18,6 +18,10 @@ import AppLayout from './ui/AppLayout';
 // styles
 import GlobalStyles from './styles/GlobalStyles';
 
+// react query & tools
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -64,11 +68,19 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+      },
+    },
+  });
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
       <RouterProvider router={router} />
-    </>
+    </QueryClientProvider>
   );
 }
 
