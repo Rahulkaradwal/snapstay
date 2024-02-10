@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router-dom';
 
 //Page Components
 import Dashboard from './pages/Dashboard';
@@ -20,6 +24,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        element: <Navigate to="/dashboard" replace />,
+      },
+      {
+        path: 'dashboard',
         element: <Dashboard />,
       },
       {
@@ -43,15 +51,15 @@ const router = createBrowserRouter([
         path: '/users',
         element: <Users />,
       },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '*',
-        element: <PageNotFound />,
-      },
     ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '*',
+    element: <PageNotFound />,
   },
 ]);
 
