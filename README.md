@@ -23,7 +23,7 @@ npm install npm@latest -g
 ### Installation
 
 Clone the repo
-git clone https://github.com/your_username_/SnapStay.git
+git clone https://github.com/Rahulkaradwal/SnapStay
 
 ### Install NPM packages
 npm install
