@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
 import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
-import { getSettings } from '../../services/apiSettings';
+import { useSettings } from './useSettings';
+import Spinner from '../../ui/Spinner';
 
 function UpdateSettingsForm() {
   const {
@@ -14,10 +14,9 @@ function UpdateSettingsForm() {
       maxGuestsPerBooking,
       breakfastPrice,
     } = {},
-  } = useQuery({
-    queryKey: ['settings'],
-    queryFn: getSettings,
-  });
+  } = useSettings();
+
+  if (isLoading) return <Spinner />;
 
   return (
     <Form>
