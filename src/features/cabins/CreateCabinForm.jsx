@@ -124,7 +124,9 @@ function CreateCabinForm({ cabinToEdit = {}, onClose }) {
           variation="secondary"
           type="reset"
           disabled={isSubmitting}
-          onClick={() => onClose?.()}
+          onClick={() => {
+            onClose?.();
+          }}
         >
           Cancel
         </Button>
