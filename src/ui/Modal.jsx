@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { IoMdClose } from 'react-icons/io';
 import { createPortal } from 'react-dom';
-import { cloneElement, createContext, useContext, useState } from 'react';
+import {
+  cloneElement,
+  createContext,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 
 const StyledModal = styled.div`
   position: fixed;
@@ -74,12 +80,28 @@ function Open({ children, opens: opensWindowName }) {
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
+  const ref = useRef();
+
+  // useEffect(
+  //   function () {
+  //     function handleClick(e) {
+  //       if (ref.current && !ref.current.contains(e.target))
+  //         console.log('click outsite');
+  //       close();
+  //     }
+
+  //     document.addEventListener('click', handleClick);
+
+  //     return () => document.removeEventListener('click', handleClick);
+  //   },
+  //   [close]
+  // );
 
   if (name !== openName) return null;
 
   return createPortal(
     <Overlay>
-      <StyledModal>
+      <StyledModal ref={ref}>
         <Button onClick={close}>
           <IoMdClose />
         </Button>

@@ -20,21 +20,23 @@ import CabinTable from './CabinTable';
 
 function AddCabin() {
   return (
-    <Model>
-      <Model.Open opens="cabin-form">
-        <Button>Add new Cabin</Button>
-      </Model.Open>
-      <Model.Window name="cabin-form">
-        <CreateCabinForm />
-      </Model.Window>
+    <div>
+      <Model>
+        <Model.Open opens="cabin-form">
+          <Button>Add new Cabin</Button>
+        </Model.Open>
+        <Model.Window name="cabin-form">
+          <CreateCabinForm />
+        </Model.Window>
 
-      <Model.Open opens="table">
-        <Button>Show table</Button>
-      </Model.Open>
-      <Model.Window name="table">
-        <CabinTable />
-      </Model.Window>
-    </Model>
+        {/* <Model.Open opens="table">
+          <Button>Show table</Button>
+        </Model.Open>
+        <Model.Window name="table">
+          <CabinTable />
+        </Model.Window> */}
+      </Model>
+    </div>
   );
 }
 
