@@ -4,6 +4,7 @@ import Spinner from '../../ui/Spinner';
 import CabinRow from './CabinRow';
 import { getCabins } from '../../services/apiCabins';
 import { useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 // styled components
 
@@ -37,20 +38,25 @@ function CabinTable() {
     queryFn: getCabins,
   });
 
-  let filteredCabin;
-
   const [searchParam] = useSearchParams();
-
   const filterValue = searchParam.get('discount') || 'all';
 
-  if (filterValue === 'all') filteredCabin = cabins;
+  // State to store filtered cabins
+  const [filteredCabin, setFilteredCabins] = useState([]);
 
-  if (filterValue === 'with-discount')
-    filteredCabin = cabins.filter((val) => val.discount > 0);
+  useEffect(() => {
+    let filtered = cabins || []; // Default to empty array if cabins is undefined
 
-  if (filterValue === 'no-discount') {
-    filteredCabin = cabins.filter((val) => val.discount === 0);
-  }
+    if (cabins) {
+      if (filterValue === 'no-discount') {
+        filtered = cabins.filter((val) => val.discount === 0);
+      } else if (filterValue === 'with-discount') {
+        filtered = cabins.filter((val) => val.discount > 0);
+      }
+    }
+
+    setFilteredCabins(filtered); // Update state with filtered or original cabin list
+  }, [cabins, filterValue]); // Depend on cabins and filterValue
 
   if (isLoading) return <Spinner />;
   return (
