@@ -89,7 +89,7 @@ function CabinRow({ cabin }) {
         </button>
 
         <Modal>
-          <Modal.Open>
+          <Modal.Open opens="edit">
             <button>
               <FaRegEdit />
             </button>
@@ -98,12 +98,12 @@ function CabinRow({ cabin }) {
           <Modal.Window name="edit">
             <CreateCabinForm cabinToEdit={cabin} />
           </Modal.Window>
-          <Modal.Open>
+          <Modal.Open opens="delete">
             <button>
               <RiDeleteBin6Line />
             </button>
           </Modal.Open>
-          <Modal.Window>
+          <Modal.Window name="delete">
             <ConfirmDelete
               resourceName="cabins"
               disabled={isDeleting}
